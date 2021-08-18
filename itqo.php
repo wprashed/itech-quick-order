@@ -76,7 +76,8 @@ add_action('admin_menu', function () {
         __('iTech Quick Order', 'itqo'),
         'manage_woocommerce',
         'quick-order-create',
-        'itqo_admin_page'
+        'itqo_admin_page',
+        'dashicons-cart',50
     );
 });
 
