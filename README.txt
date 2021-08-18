@@ -22,6 +22,18 @@ You easily order from your dashboard for new customer & existing customers.
 
 N.B: If you want more options in this plugin, please [contact with us](https://itech-softsolutions.com/ "iTech Softsolutions")
 
+= Minimum Requirements =
+
+* WordPress 5.0 or greater
+* PHP version 7.0 or greater
+* MySQL version 5.0 or greater
+
+= We recommend your host supports: =
+
+* PHP version 7.4 or greater
+* MySQL version 5.6 or greater
+* WP Memory limit of 64 MB or greater (128 MB or higher is preferred)
+
 == Installation ==
 
 This section describes how to install the plugin and get it working.
