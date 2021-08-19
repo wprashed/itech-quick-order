@@ -16,8 +16,8 @@
  */
 
 // If this file is called directly, abort.
-if ( ! defined( 'WPINC' ) ) {
-	die;
+if (!defined('WPINC')) {
+    die;
 }
 
 /**
@@ -25,34 +25,36 @@ if ( ! defined( 'WPINC' ) ) {
  * Start at version 1.0.0 and use SemVer - https://semver.org
  * Rename this for your plugin and update it as you release new versions.
  */
-define( 'ITQO_VERSION', '1.0.0' );
+define('ITQO_VERSION', '1.0.0');
 
 /**
  * The code that runs during plugin activation.
  * This action is documented in includes/class-itqo-activator.php
  */
-function activate_itqo() {
-	require_once plugin_dir_path( __FILE__ ) . 'includes/class-itqo-activator.php';
-	Itqo_Activator::activate();
+function activate_itqo()
+{
+    require_once plugin_dir_path(__FILE__) . 'includes/class-itqo-activator.php';
+    Itqo_Activator::activate();
 }
 
 /**
  * The code that runs during plugin deactivation.
  * This action is documented in includes/class-itqo-deactivator.php
  */
-function deactivate_itqo() {
-	require_once plugin_dir_path( __FILE__ ) . 'includes/class-itqo-deactivator.php';
-	Itqo_Deactivator::deactivate();
+function deactivate_itqo()
+{
+    require_once plugin_dir_path(__FILE__) . 'includes/class-itqo-deactivator.php';
+    Itqo_Deactivator::deactivate();
 }
 
-register_activation_hook( __FILE__, 'activate_itqo' );
-register_deactivation_hook( __FILE__, 'deactivate_itqo' );
+register_activation_hook(__FILE__, 'activate_itqo');
+register_deactivation_hook(__FILE__, 'deactivate_itqo');
 
 /**
  * The core plugin class that is used to define internationalization,
  * admin-specific hooks, and public-facing site hooks.
  */
-require plugin_dir_path( __FILE__ ) . 'includes/class-itqo.php';
+require plugin_dir_path(__FILE__) . 'includes/class-itqo.php';
 
 /**
  * Begins execution of the plugin.
@@ -63,11 +65,11 @@ require plugin_dir_path( __FILE__ ) . 'includes/class-itqo.php';
  *
  * @since    1.0.0
  */
-function run_itqo() {
+function run_itqo()
+{
 
-	$plugin = new Itqo();
-	$plugin->run();
-
+    $plugin = new Itqo();
+    $plugin->run();
 }
 
 add_action('admin_menu', function () {
@@ -77,11 +79,13 @@ add_action('admin_menu', function () {
         'manage_woocommerce',
         'quick-order-create',
         'itqo_admin_page',
-        'dashicons-cart',50
+        'dashicons-cart',
+        50
     );
 });
 
-function itqo_admin_page() {
+function itqo_admin_page()
+{
 ?>
     <div class="itqo-form-wrapper">
         <div class="itqo-form-title">
@@ -94,26 +98,26 @@ function itqo_admin_page() {
                         <input type='hidden' name='customer_id' id='customer_id' value='0'>
                         <div class='pure-control-group'>
                             <?php $label = __('Email Address', 'itqo'); ?>
-                            <label for='name'><?php echo $label; ?></label>
-                            <input class='itqo-control' required name='email' id='email' type='email' placeholder='<?php echo $label; ?>'>
+                            <label for='name'><?php echo esc_html($label); ?></label>
+                            <input class='itqo-control' required name='email' id='email' type='email' placeholder='<?php echo esc_html($label); ?>'>
                         </div>
 
                         <div class='pure-control-group'>
                             <?php $label = __('First Name', 'itqo'); ?>
-                            <label for='first_name'><?php echo $label; ?></label>
-                            <input class='itqo-control' required name='first_name' id='first_name' type='text' placeholder='<?php echo $label; ?>'>
+                            <label for='first_name'><?php echo esc_html($label); ?></label>
+                            <input class='itqo-control' required name='first_name' id='first_name' type='text' placeholder='<?php echo esc_html($label); ?>'>
                         </div>
 
                         <div class='pure-control-group'>
                             <?php $label = __('Last Name', 'itqo'); ?>
-                            <label for='last_name'><?php echo $label; ?></label>
-                            <input class='itqo-control' required name='last_name' id='last_name' type='text' placeholder='<?php echo $label; ?>'>
+                            <label for='last_name'><?php echo esc_html($label); ?></label>
+                            <input class='itqo-control' required name='last_name' id='last_name' type='text' placeholder='<?php echo esc_html($label); ?>'>
                         </div>
 
                         <div class='pure-control-group' id='password_container'>
                             <?php $label = __('Password', 'itqo'); ?>
-                            <label for='password'><?php echo $label; ?></label>
-                            <input class='itqo-control-right-gap' name='password' id='password' type='text' placeholder='<?php echo $label; ?>'>
+                            <label for='password'><?php echo esc_html($label); ?></label>
+                            <input class='itqo-control-right-gap' name='password' id='password' type='text' placeholder='<?php echo esc_html($label); ?>'>
                             <button type='button' id='itqo_genpw' class="button button-primary button-hero">
                                 <?php _e('Generate', 'itqo'); ?>
                             </button>
@@ -121,25 +125,25 @@ function itqo_admin_page() {
 
                         <div class='pure-control-group'>
                             <?php $label = __('Phone Number', 'itqo'); ?>
-                            <label for='phone'><?php echo $label; ?></label>
-                            <input class='itqo-control' name='phone' id='phone' type='text' placeholder='<?php echo $label; ?>'>
+                            <label for='phone'><?php echo esc_html($label); ?></label>
+                            <input class='itqo-control' name='phone' id='phone' type='text' placeholder='<?php echo esc_html($label); ?>'>
                         </div>
 
                         <div class='pure-control-group'>
                             <?php $label = __('Discount in Taka', 'itqo'); ?>
-                            <label id="discount-label" for="discount"><?php echo $label; ?></label>
-                            <input class='itqo-control' name="discount" id="discount" type='text' placeholder='<?php echo $label; ?>'>
+                            <label id="discount-label" for="discount"><?php echo esc_html($label); ?></label>
+                            <input class='itqo-control' name="discount" id="discount" type='text' placeholder='<?php echo esc_html($label); ?>'>
                         </div>
 
                         <div class='pure-control-group' style="margin-top:20px;margin-bottom:20px;">
                             <?php $label = __('I want to input coupon code', 'itqo'); ?>
                             <label for='coupon'></label>
-                            <input type='checkbox' name='coupon' id='coupon' value='1' /><?php echo $label; ?>
+                            <input type='checkbox' name='coupon' id='coupon' value='1' /><?php echo esc_html($label); ?>
                         </div>
 
                         <div class='pure-control-group'>
                             <?php $label = __('Product Name', 'itqo'); ?>
-                            <label for='item'><?php echo $label; ?></label>
+                            <label for='item'><?php echo esc_html($label); ?></label>
                             <select class='itqo-control' name='item' id='item'>
                                 <option value="0"><?php _e('Select One', 'itqo'); ?></option>
                                 <?php
@@ -155,8 +159,8 @@ function itqo_admin_page() {
 
                         <div class=' pure-control-group'>
                                         <?php $label = __('Order Note', 'itqo'); ?>
-                                        <label for='note'><?php echo $label; ?></label>
-                                        <input class='itqo-control' name='note' id="note" type='text' placeholder='<?php echo $label; ?>'>
+                                        <label for='note'><?php echo esc_html($label); ?></label>
+                                        <input class='itqo-control' name='note' id="note" type='text' placeholder='<?php echo esc_html($label); ?>'>
                         </div>
 
                         <div class='pure-control-group' style='margin-top:20px;'>
@@ -238,7 +242,8 @@ add_action('wp_ajax_itqo_fetch_user', function () {
     die();
 });
 
-function itqo_process_submission() {
+function itqo_process_submission()
+{
     $itqo_order_identifier = sanitize_text_field($_POST['itqo_identifier']);
     $processed = get_transient("itqo{$itqo_order_identifier}");
     if ($processed) {
@@ -315,7 +320,3 @@ add_action('itqo_order_processing_complete', function ($order_id) {
 });
 
 run_itqo();
-
-
-
-
